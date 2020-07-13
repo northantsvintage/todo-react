@@ -4,15 +4,30 @@ import Form from './components/Form'
 import FilterButton from './components/FilterButton'
 
 function App(props) {
+  
+  function addTask(name) {
+    alert(name);
+  }
+
   //  DATA array available to the App component as props.tasks
   // console.log(props.tasks);
 
   const taskList = props.tasks.map(task => <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />);
-  
+
+ 
+   
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <Form />
+
+      {/* 
+         handling form submission via callbacks
+         function expect some data from form as an input
+         then pass that function to form as prop
+         this function as a prop is callback prop
+         you call this callback from inside <Form /> to send data to App
+      */}
+      <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
         <FilterButton />
         <FilterButton />
