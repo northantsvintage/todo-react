@@ -2,16 +2,26 @@ import React, { useState } from 'react'
 import Todo from './components/Todo'
 import Form from './components/Form'
 import FilterButton from './components/FilterButton'
-
+import { nanoid } from 'nanoid'
 
 function App(props) {
 
   // to preserve the initial state of the props.tasks
   const [tasks, setTasks] = useState(props.tasks);
   
+
+  // name is string and tasks is an array of objects; if you use name array would be replaced, no tasks added
+  // workaround: put name-string into an object with same strucuture as existing tasks
+  // then update the state of the tasks to this new state
+  // ...spread syntax used to copy the existing array and add object at the end
+  // then pass this array into setTasks() to update state
   function addTask(name) {
-    alert(name);
+    // const newTask = { id: "id", name: name, completed:false };
+    const newTask = { id: "todo-" + nanoid(), name: name, completed:false };
+    setTasks([...tasks, newTask]);
   }
+  // each task needs new unique id; use nanoid librayr to make unique identifiers (npm install nanoid)
+
 
   //  DATA array available to the App component as props.tasks
   // console.log(props.tasks);
@@ -21,6 +31,7 @@ function App(props) {
 
   // change taskList maping to tasks as the state is preserved with useState
   
+  // tasks or taskList is an array of objects after mapping
   const taskList = tasks.map(task => (
     <Todo 
       id={task.id} 
