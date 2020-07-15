@@ -28,7 +28,7 @@ function Form(props) {
     function handleChange(e) {
         {/* store updated state */}
         setName(e.target.value);
-    }
+    }             
 
     return(
         <form onSubmit={handleSubmit}>
