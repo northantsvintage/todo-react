@@ -23,6 +23,19 @@ function App(props) {
     setTasks([...tasks, newTask]);
   }
 
+   {/* change the completed property of only the task that was toggled */}
+  function toggleTaskCompleted(id) {
+    const updatedTasks = tasks.map(task => {
+      // if this task has the same ID as the edited task
+      if (id === task.id) {
+        // use object spread to make a new object
+        // whose `completed` prop has been inverted
+        return {...task, completed: !task.completed}
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
   {/* 
   each task needs new unique id; use nanoid librayr to make unique identifiers (npm install nanoid)
 
@@ -43,6 +56,7 @@ function App(props) {
       name={task.name} 
       completed={task.completed} 
       key={task.id} 
+      toggleTaskCompleted={toggleTaskCompleted}
     />
   ))
     {/* counting number of tasks and using singuar or plural noun */}
