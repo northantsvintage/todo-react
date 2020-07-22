@@ -36,6 +36,17 @@ function App(props) {
     });
     setTasks(updatedTasks);
   }
+
+ 
+  {/*
+    delete task
+    setTasks() expects an array as an argument, provide it with a new array that copies the existing tasks, excluding the task whose ID matches the one passed into deleteTask().
+  */}
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter(task => id !== task.id);
+    setTasks(remainingTasks);
+  }
+
   {/* 
   each task needs new unique id; use nanoid librayr to make unique identifiers (npm install nanoid)
 
@@ -56,7 +67,8 @@ function App(props) {
       name={task.name} 
       completed={task.completed} 
       key={task.id} 
-      toggleTaskCompleted={toggleTaskCompleted}
+      toggleTaskCompleted={toggleTaskCompleted} 
+      deleteTask={deleteTask}
     />
   ))
     {/* counting number of tasks and using singuar or plural noun */}
