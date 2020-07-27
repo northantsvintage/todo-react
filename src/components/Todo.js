@@ -4,7 +4,7 @@ export default function Todo(props) {
     // console.log(props);
 
     // isEditing state set to false as default
-    const [isEditing, setEditing] = useState(false);
+    const [isEditing, setEditing] = useState(true);
 
    {/*  two templates: one for editing and another one for viewing inside two separate constants
     */}
@@ -74,4 +74,6 @@ export default function Todo(props) {
         </div>
       </li>
     );
+    // condition to render different templates
+    return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
