@@ -37,6 +37,22 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
+  {/*
+    edit task: take an id to find target object
+    newName property containing the name to update the task
+    map to return new array with some changes
+  */}
+  function editTask(id, newName) {
+    const editedTaskList = tasks.map(task => {
+    // if this task has the same ID as the edited task
+      if (id === task.id) {
+        //
+        return {...task, name: newName}
+      }
+      return task;
+    });
+    setTasks(editedTaskList);
+  }
  
   {/*
     delete task
@@ -68,7 +84,8 @@ function App(props) {
       completed={task.completed} 
       key={task.id} 
       toggleTaskCompleted={toggleTaskCompleted} 
-      deleteTask={deleteTask}
+      deleteTask={deleteTask} 
+      editTask={editTask}
     />
   ))
     {/* counting number of tasks and using singuar or plural noun */}
